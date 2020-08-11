@@ -77,8 +77,16 @@ Unsucessful
 
 ```./exploit 0x6b x.x.x.104 -c 40```
 
-It Works!
+It Works! We are now root
 
 Note: It seemingly freezes for a bit by not producing an output but if we type in a command such as ```id``` and we get an output which shows we have a shell.
 
 Note 2: If the above command doesn't work (i.e reaches ```spawning shell ... Good Bye!``` ), try deleting the compiled script and recompile and it should work fine
+
+### TTY shell
+
+unnecessary step but would prove useful if we had any other steps to perform.
+
+```/bin/bash -i```
+
+
