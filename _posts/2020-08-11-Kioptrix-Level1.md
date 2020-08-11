@@ -19,6 +19,10 @@ nmap -sC -sV -oA nmap x.x.x.104
 
 ![Initial NMap Scan](/images/KioptrixL1/Nmap1.JPG)
 
+We have 6 ports open: 22 (SSH), 80 (HTTP), 111 (rpcbind), 139 (netbios-ssn samba), 443 (ssl/https), 1024 (status)
+
+I'm going to start by looking at the HTTP port
+
 ## HTTP - Port 80
 ### Gobuster
 gobuster dir -u http://x.x.x.104 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -o gobuster.txt -x php,html,txt,xml
