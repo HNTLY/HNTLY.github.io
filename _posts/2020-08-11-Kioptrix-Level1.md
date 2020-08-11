@@ -26,3 +26,5 @@ I'm going to start by looking at the HTTP port
 ## HTTP - Port 80
 ### Gobuster
 gobuster dir -u http://x.x.x.104 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -o gobuster.txt -x php,html,txt,xml
+
+![Gobuster Results](/images/KioptrixL1/Gobuster1.JPG)
