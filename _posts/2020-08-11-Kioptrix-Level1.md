@@ -6,9 +6,7 @@ title: Kioptrix Level 1
 
 ## Find IP of box
 Our IP: x.x.x.49
-```
-nmap -T5 <LHOST>/24
-```
+```nmap -T5 <LHOST>/24```
 Kioptrix is running on: x.x.x.104  
 
 ## Init NMap Scan
