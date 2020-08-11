@@ -66,8 +66,9 @@ It presents us with:
   box - hostname or IP address
   port - port for ssl connection
   -c open N connections. (use range 40-50 if u dont know
-and a long list of supported offsets to place instead of 'target'
 ```
+
+and a long list of supported offsets to place instead of 'target'
 
 Ours is likely to be either 0x6a or 0x6b so we'll try 0x6a first
 
