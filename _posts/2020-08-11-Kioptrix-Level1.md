@@ -13,3 +13,5 @@ nmap -sC -sV -oA nmap x.x.x.104
  - Default Scripts
  - Service Detection
  - Output all formats
+
+![Initial NMap Scan](/images/KioptrixL1/Nmap1.JPG)
