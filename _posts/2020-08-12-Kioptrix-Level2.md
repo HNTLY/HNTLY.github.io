@@ -50,13 +50,13 @@ I entered the machine IP into the box and it opens a new tab with the ping resul
  
  ![Ping RCE check](/images/KioptrixL2/PingID.JPG)
  
- ### NetCat
+### NetCat
  
  Start a netcat listener on local machine
  
  `nc -lvnp 4444`
  
- ### RCE Reverse Shell
+### RCE Reverse Shell
  
  Grab a reverse shell from (Pentest Monkey's Cheat Sheet)[http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet] 
  
@@ -66,6 +66,6 @@ I entered the machine IP into the box and it opens a new tab with the ping resul
  
  Spawn a TTY shell using python -c 'import pty; pty.spawn("/bin/sh")' from (Netsec TTY Cheat Sheet)[https://netsec.ws/?p=337]
  
- ### Privilege Escalation
+### Privilege Escalation
  
 I started 
