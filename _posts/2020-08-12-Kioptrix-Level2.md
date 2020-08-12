@@ -48,7 +48,7 @@ I entered the machine IP into the box and it opens a new tab with the ping resul
  
  We know the machine is running on linux so I appened pipe id ( | id) which proves successful.
  
- !(Ping RCE check)[images/KioptrixL2/PingID.JPG]
+ ![Ping RCE check](images/KioptrixL2/PingID.JPG)
  
  ### NetCat
  
