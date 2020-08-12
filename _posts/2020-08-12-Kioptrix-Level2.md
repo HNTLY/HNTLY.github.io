@@ -46,7 +46,7 @@ We see an option to ping a machine on the network which suggests we may have RCE
 
 I entered the machine IP into the box and it opens a new tab with the ping results. I'm assuming that the command it's running is simply: ping <IP> where the IP is the user entered text.
  
- We know the machine is running on linux so I appened pipe id ( | id) which proves successful.
+ We know the machine is running on linux so I appened ` | id` which proves successful.
  
  ![Ping RCE check](/images/KioptrixL2/PingID.JPG)
  
