@@ -36,7 +36,7 @@ Same with Dirbuster for recurisve search
 
 ### SQL Injection
 
-' or '1'='1
+`' or '1'='1`
 
 Enter in both Username and Password and we get a login
 
