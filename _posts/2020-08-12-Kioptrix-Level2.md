@@ -9,4 +9,14 @@ Our IP: x.x.x.49
 
 `nmap -T5 <LHOST>/24`
 
-Kioptrix is running on: x.x.x.  
+Kioptrix is running on: x.x.x.4  
+
+## Init NMap Scan
+
+`nmap -sC -sV -oA nmap x.x.x.4`
+
+ - Default Scripts
+ - Service Detection
+ - Output all formats
+ 
+ ![Initial NMap Scan](/images/KioptrixL2/NMap1.JPG)
