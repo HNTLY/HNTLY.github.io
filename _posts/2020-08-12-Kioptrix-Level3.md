@@ -28,3 +28,18 @@ As mentioned in the Description of the VM on VulnHub, we must add our victim mac
  ![Initial NMap Scan](/images/KioptrixL3/NMap1.JPG)
  
  There are only 2 ports open: 22 (ssh), 80 (http)
+
+## HTTP - Port 80
+### Gobuster
+
+`gobuster dir -u http://x.x.x.16 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -o gobuster.txt -x php,html,txt,xml`
+
+![Initial Gobuster Scan](/images/KioptrixL3/gobuster1.JPG)
+
+Navigate to gallery if we use the sorting options drop down menu in the album, the URL changes to contain parameters such as id=1, which suggest we may be able to use XSS.
+
+### XSS
+
+Replace the '1' and the text after in the URL with <script>alert(1)</script> and it executes successfully
+
+![XSS Check](/images/KioptrixL3/XSS1.JPG)
