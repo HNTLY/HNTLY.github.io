@@ -40,12 +40,12 @@ Navigate to gallery if we use the sorting options drop down menu in the album, t
 
 ### XSS Check
 
-Replace the '1' and the text after in the URL with <script>alert(1)</script> and it executes successfully
+Replace the '1' and the text after in the URL with `<script>alert(1)</script>` and it executes successfully
 
 ![XSS Check](/images/KioptrixL3/XSS1.JPG)
 
 ### SQLI Check
 
-We can also check for and SQL injection vulnerability by replacing the 1 with [' or '1'='1] without the square brackets
+We can also check for and SQL injection vulnerability by replacing the 1 with `' or '1'='1` 
 
 ![SQLI Check](/images/KioptrixL3/SQLI1.JPG)
