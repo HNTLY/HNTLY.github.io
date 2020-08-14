@@ -64,3 +64,39 @@ But if we enter 7, it fails:
 ![SQLI Column failure](/images/KioptrixL3/SQLI3.JPG)
 
 Therefore, we know there are 6 columns in the table
+
+#### Vulnerable Columns
+
+To find these, after `id = 1` we enter `union select 1,2,3,4,5,6` and the numbers that appear in the 'Sub Gallery' section are new to the page and therefore the vulnerable columns
+
+![SQLI Vulnerable Columns](/images/KioptrixL3/SQLI4.JPG)
+
+#### SQL Version
+
+This is simple, just replace either the 2 or 3 from the `union select 1,2,3,4,5,6` injection previously
+
+We are using version 5.0.51a-3ubuntu5.4 which is MySQL
+
+#### Database Name
+
+Replace the `version` from the previous injection with `database`
+
+The database name is gallery
+
+#### User
+
+Replace `database` with `user`
+
+The user is root@localhost
+
+#### Table Name
+
+Replace `user()` with `group_concat(table_name)` and append ` from information_schema.tables where table_schema=database()--` at the end of the URL
+
+This shows all of the table names we have access to
+
+dev_accounts looks most promising so we'll start there
+
+#### Column Name
+
+Replace table from `group_concat(table_name)` with column and 
