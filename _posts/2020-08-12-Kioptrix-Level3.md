@@ -99,4 +99,45 @@ dev_accounts looks most promising so we'll start there
 
 #### Column Name
 
-Replace table from `group_concat(table_name)` with column and 
+For the next injection, we first need to convert dev_accounts to ASCII which gets us 100, 101, 118, 95, 97, 99, 99, 111, 117, 110, 116, 115
+
+First change the table from `table_name` to `column` and replace everything after the 6 with `from information_schema.columns where table_name=char(100, 101, 118, 95, 97, 99, 99, 111, 117, 110, 116, 115)`
+
+The column names are id, username and password
+
+#### Username + hash
+
+Replace `column_name` with `username,password` and everything after from to dev_accounts
+
+We get the usernames dreg and loneferret and the password hashes for each 
+
+### Hash Cracking
+
+Add each hash (seperate lines) to a file and run the command `john --wordlist=/usr/share/wordlists/rockyou.txt --format=RAW-MD5 <file_name>`
+
+The creds are 
+- dreg : Mast3r
+- loneferret : starwars
+
+### SSH and Privilege Escalation
+
+We can SSH in as either user, I chose loneferret
+
+Run `sudo -l` to find commands we run as sudo with a password
+
+It shows we can run /usr/local/bin/ht
+
+Run `export TERM=xterm-color`
+
+Then `sudo ht /etc/sudoers` to edit the sudoers file as sudo
+
+Press F3 and open /etc/sudoers
+
+In the loneferret user line, add /bin/sh to the commands being run as sudo
+
+Press F10 and enter to save and exit the file.
+
+Now if we run `sudo -l` we can run `/bin/sh` as sudo
+
+To get root, just run `sudo sh`
+
