@@ -49,3 +49,18 @@ Replace the '1' and the text after in the URL with `<script>alert(1)</script>` a
 We can also check for and SQL injection vulnerability by replacing the 1 with `' or '1'='1` 
 
 ![SQLI Check](/images/KioptrixL3/SQLI1.JPG)
+
+### SQLI Exploitation
+#### Number of Columns
+
+Continuing with the SQLI attack, we need to find the number of columns in the table. To do this we can enter `order by x--` where x is an integer. Start at 1 and increment by 1 until we get `unkown column`
+
+When x=6, it works:
+
+![SLQI Column correct](/images/KioptrixL3/SQLI2.JPG)
+
+But if we enter 7, it fails:
+
+![SQLI Column failure](/images/KioptrixL3/SQLI3.JPG)
+
+Therefore, we know there are 6 columns in the table
