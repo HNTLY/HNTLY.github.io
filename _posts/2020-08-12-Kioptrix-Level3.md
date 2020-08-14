@@ -38,8 +38,14 @@ As mentioned in the Description of the VM on VulnHub, we must add our victim mac
 
 Navigate to gallery if we use the sorting options drop down menu in the album, the URL changes to contain parameters such as id=1, which suggest we may be able to use XSS.
 
-### XSS
+### XSS Check
 
 Replace the '1' and the text after in the URL with <script>alert(1)</script> and it executes successfully
 
 ![XSS Check](/images/KioptrixL3/XSS1.JPG)
+
+### SQLI Check
+
+We can also check for and SQL injection vulnerability by replacing the 1 with [' or '1'='1] without the square brackets
+
+![SQLI Check](/images/KioptrixL3/SQLI1.JPG)
